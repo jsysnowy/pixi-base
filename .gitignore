@@ -1,0 +1,4 @@
+BUILD/game.js
+BUILD/game.js.map
+node_modules/
+!BUILD/tslint.json

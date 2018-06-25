@@ -1,0 +1,202 @@
+@font-face {
+    font-family: "Lato-Hairline";
+    src: url("../font/Lato-Hairline.woff") format("woff");
+}
+
+@font-face {
+    font-family: "DINAlternateBold";
+    src: url("../font/DINAlternateBold.woff") format("woff");
+}
+
+@font-face {
+    font-family: "ArialBlack";
+    src: url("../font/ArialBlack.woff") format("woff");
+}
+
+@font-face {
+    font-family: "din_condensedbold";
+    src: url("../font/DINCondensedBold.woff") format("woff");
+}
+
+/** -= Game Canvas/DIV CSS =- **/
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+}
+
+#gameArea {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-bottom: 1px;
+}
+
+/** Fix IOS grey selection issue **/
+
+canvas {
+    /*position: absolute !important;*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    /* mobile webkit */
+}
+
+#gameDiv {
+    position: relative;
+    z-index: 1;
+}
+
+/** -= Device Fullscreen CSS=- **/
+
+#fullScreenMask {
+    height: calc(100%+60px);
+    position: absolute;
+    overflow: hidden;
+    opacity: 0.8;
+    background-color: black;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#fullScreenMask p {
+    font-family: Helvetica, sans-serif;
+    color: black;
+    background-color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    overflow-y: auto;
+    position: relative;
+    top: 20%;
+    text-align: center;
+    padding: 15px;
+}
+
+#fullScreenMask.fs_off {
+    width: 1px;
+    opacity: 0;
+    height: 120%;
+}
+
+#fullScreenMask.fs_on {
+    width: 100%;
+    opacity: 0.7;
+    height: 200%;
+}
+
+/** -=Device Rotation CSS=- **/
+
+#rotateDevice {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+#rotateDevice.hide {
+    display: none;
+}
+
+#rotateDevice.show {
+    display: block;
+}
+
+#rotateDevice.enportrait {
+    background: black url(../img/orientation_background_en_landscape.png) no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+}
+
+#rotateDevice.enlandscape {
+    background: black url(../img/orientation_background_en.png) no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+}
+
+#rotateDevice.frportrait {
+    background: black url(../img/orientation_background_fr_landscape.png) no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+}
+
+#rotateDevice.frlandscape {
+    background: black url(../img/orientation_background_fr.png) no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+}
+
+#rotateDevice.deportrait {
+    background: black url(../img/orientation_background_de_landscape.png) no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+}
+
+#rotateDevice.delandscape {
+    background: black url(../img/orientation_background_de.png) no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+}
+
+#gameArea.show {
+    z-index: 1;
+}
+
+#gameArea.hide {
+    z-index: -1;
+}
+
+/** -= Game Paused CSS **/
+
+body #pauseOverlay {
+    display: none;
+    opacity: 0;
+    height: 2048px;
+    width: 2048px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50%;
+    margin-top: -50%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+body #pauseOverlay.show {
+    transition: opacity 5s ease-in-out;
+    -moz-transition: opacity 5s ease-in-out;
+    -webkit-transition: opacity 5s ease-in-out;
+    opacity: 1;
+}
+
+body > img {
+    position: fixed;
+}
+
+#pauseIcon{
+    display: none; /* hide until explicitly shown */
+
+    position: absolute;
+    z-index: 99; /* display over translucent overlay */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* magically centre the img */
+    cursor: pointer;
+
+    /* \/ customisable \/ */
+    width: 20vw;
+    height: auto;
+    min-width: 140px;
+    max-width: 415px; /* max width of asset, can probably dynamically set */
+}

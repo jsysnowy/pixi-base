@@ -1,0 +1,29 @@
+==PIXI==
+https://github.com/pixijs/pixi.js
+
+This content is released under the (http://opensource.org/licenses/MIT) MIT License.
+
+==Howler==
+https://github.com/goldfire/howler.js
+
+Copyright (c) 2013-2017 James Simpson and GoldFire Studios, Inc.
+Released under the MIT License.
+
+==TweenMax==
+https://github.com/greensock/GreenSock-JS/
+
+License: GreenSock's standard "no charge" license can be viewed at http://greensock.com/standard-license.
+Club GreenSock members are granted additional rights. See http://greensock.com/licensing/ for details. Why doesn't GreenSock
+use an MIT (or similar) open source license, and why is that a good thing? This article explains it all: http://greensock.com/why-license/
+
+==Chance==
+https://github.com/chancejs/chancejs
+
+This project is licensed under the MIT License so feel free to hack away :)
+
+==EventEmitter==
+https://github.com/Olical/EventEmitter
+
+This is free and unencumbered software released into the public domain.
+Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary,
+for any purpose, commercial or non-commercial, and by any means.

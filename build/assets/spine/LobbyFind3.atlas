@@ -1,0 +1,48 @@
+
+LobbyFind3.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+game3_glow1
+  rotate: false
+  xy: 372, 195
+  size: 368, 254
+  orig: 368, 254
+  offset: 0, 0
+  index: -1
+game3_glow2
+  rotate: false
+  xy: 742, 195
+  size: 368, 254
+  orig: 368, 254
+  offset: 0, 0
+  index: -1
+game3_glow3
+  rotate: false
+  xy: 2, 195
+  size: 368, 254
+  orig: 368, 254
+  offset: 0, 0
+  index: -1
+game3_stand1
+  rotate: false
+  xy: 2, 2
+  size: 310, 191
+  orig: 310, 191
+  offset: 0, 0
+  index: -1
+game3_stand2
+  rotate: false
+  xy: 1112, 258
+  size: 310, 191
+  orig: 310, 191
+  offset: 0, 0
+  index: -1
+game3_stand3
+  rotate: false
+  xy: 314, 2
+  size: 310, 191
+  orig: 310, 191
+  offset: 0, 0
+  index: -1

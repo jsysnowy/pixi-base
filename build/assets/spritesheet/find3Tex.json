@@ -1,0 +1,68 @@
+{"frames": {
+
+"game3_glow1":
+{
+	"frame": {"x":1,"y":259,"w":368,"h":213},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":41,"w":368,"h":213},
+	"sourceSize": {"w":368,"h":254}
+},
+"game3_glow2":
+{
+	"frame": {"x":371,"y":259,"w":306,"h":210},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":26,"y":20,"w":306,"h":210},
+	"sourceSize": {"w":368,"h":254}
+},
+"game3_glow3":
+{
+	"frame": {"x":374,"y":1,"w":239,"h":207},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":57,"y":0,"w":239,"h":207},
+	"sourceSize": {"w":368,"h":254}
+},
+"game3_stand1":
+{
+	"frame": {"x":615,"y":1,"w":310,"h":151},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":40,"w":310,"h":151},
+	"sourceSize": {"w":310,"h":191}
+},
+"game3_stand2":
+{
+	"frame": {"x":679,"y":154,"w":247,"h":148},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":26,"y":19,"w":247,"h":148},
+	"sourceSize": {"w":310,"h":191}
+},
+"game3_stand3":
+{
+	"frame": {"x":679,"y":304,"w":179,"h":144},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":58,"y":0,"w":179,"h":144},
+	"sourceSize": {"w":310,"h":191}
+},
+"game3_stand_win_glow":
+{
+	"frame": {"x":1,"y":1,"w":371,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":371,"h":256},
+	"sourceSize": {"w":371,"h":256}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "find3Tex.png",
+	"format": "RGBA8888",
+	"size": {"w":927,"h":473},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0a97fb4029afd7f5a5f50609e1fdff75:d304c1dbb84fd290141d05ff7c78ab14:79bf5f1f498f15e101e083691a225169$"
+}
+}

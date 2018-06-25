@@ -1,0 +1,19 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "amd",
+        "declaration": false,
+        "noImplicitAny": false,
+        // "removeComments": true,
+        "noLib": false,
+        "sourceMap": true,
+        "outFile": "game.js"
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "defs/**/*.ts"
+    ]
+}

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ticket>
+  <outcome amount="100.00" prizeTier="15" isWinner="1"/>
+  <params/>
+  <prizeList a="1000000,5000,1000,500,200,100,50,20,10,5,0"/>
+  <miniGame1 w="0" p="10" s="3,0" yS="2" wS="0"/>
+  <miniGame2 w="0" p="10" s="1,5,4,6" wS="-1"/>
+  <miniGame3 w="0" p="10" s="5,3,1,0,7,6" wS="-1"/>
+  <mainGame>
+    <go w="0" s="0,9,13" p="5"/>
+    <go w="0" s="0,10,10" p="8"/>
+    <go w="1" s="12,12,12" p="7"/>
+    <go w="1" s="1,1,1" p="7"/>
+    <go w="0" s="4,8,7" p="7"/>
+    <go w="1" s="11,11,11" p="7"/>
+    <go w="1" s="11,11,11" p="7"/>
+    <go w="0" s="2,12,9" p="0"/>
+    <go w="1" s="6,6,6" p="7"/>
+    <go w="0" s="5,11,4" p="9"/>
+  </mainGame>
+</ticket>
