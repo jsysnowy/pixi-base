@@ -1,0 +1,28 @@
+{
+    "version": "0.1.0",
+    "tasks": [
+        {
+            "taskName": "build",
+            "command": "tsc",
+            "isShellCommand": true,
+            "args": [
+                "-w",
+                "-p",
+                "build"
+            ],
+            "showOutput": "always",
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch"
+        },
+        {
+            "taskName": "lint",
+            "command": "tslint",
+            "isBackground": true,
+            "args": [
+                "-c",
+                "BUILD/tslint.json",
+                "BUILD/src/**/*.ts"
+            ]
+        }
+    ]
+ }

@@ -74,7 +74,7 @@ namespace com.sideplay.state {
                 // Requests ticket.
                 core.ticket.requestTicket(() => {
                     // Switch game to preloader.
-                    core.Game.instance.switchState("preloader");
+                    core.game.switchState("preloader");
                 });
             });
         }

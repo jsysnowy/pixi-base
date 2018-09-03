@@ -292,7 +292,7 @@ namespace com.sideplay.core {
                 if (config.settings.pauseOverlayType == "canvas") {
                     this._overlayGFX = new PIXI.Graphics();
                     this._overlayGFX.beginFill(0x000000, 0.2);
-                    this._overlayGFX.drawRect(0, 0, core.Game.NATIVE_WIDTH, core.Game.NATIVE_HEIGHT);
+                    this._overlayGFX.drawRect(0, 0, config.settings.nativeWidth, config.settings.nativeHeight);
                     this._overlayGFX.interactive = this._isClickable;
                     this._group.addChild(this._overlayGFX);
 
@@ -325,7 +325,7 @@ namespace com.sideplay.core {
                     // Generates a graphic over the game which prevents clicks.
                     this._overlayGFX = new PIXI.Graphics();
                     this._overlayGFX.beginFill(0x000000, 0);
-                    this._overlayGFX.drawRect(0, 0, core.Game.NATIVE_WIDTH, core.Game.NATIVE_HEIGHT);
+                    this._overlayGFX.drawRect(0, 0, config.settings.nativeWidth, config.settings.nativeHeight);
                     this._overlayGFX.interactive = this._isClickable;
                     this._group.addChild(this._overlayGFX);
 

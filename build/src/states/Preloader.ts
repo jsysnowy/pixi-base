@@ -26,6 +26,7 @@ namespace com.sideplay.state {
                     // == On Complete ==
                     window.focus();
                     core.listeners.manuallyFireListener(core.Listeners.orientationChange);
+                    new core.Utils.SpineAtlasGenerator().generateAllLoadedSpineAtlas();
                     core.game.switchState("maingame");
                 },
                 () => {

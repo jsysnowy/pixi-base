@@ -4,36 +4,39 @@
 
 * - Changelog:
 * - 08/06/18 - Created. [Snowy]
-* - 11/06/18 - generateTextureAtlas uses the .atlas file now for more efficient and accurate results. [Snowy]
+* - 22/8/18 - Tied in listeners automatically .. reformatted file.
 * -=-
 */
 
 namespace com.sideplay.core {
     export class Spine extends PIXI.Container {
-        //================================================================================
-        // Customisable Params:
-        //================================================================================
-
-        //================================================================================
-        // Non-Customisable Params::
-        //================================================================================
-        // - Data:
-        private _coreSpineID: string;
-        private _spineData: any;
-        private _spineAtlas: any;
+        //#region Class Properties
+        /**
+         * Stores the function added to gameLoop update functions, which updates the spineObject by dT every frame.
+         * @private
+         * @type {*}
+         * @memberof Spine
+         */
         private _updateFunction: any;
 
-        // - Spine object itself:
+        /**
+         * Stores functions tied to onCompletes of this spine anim.
+         * @private
+         * @type {*}
+         * @memberof Spine
+         */
+        private _listenerFunctions: any = {};
+
+        /**
+         * Stores spine object
+         * @private
+         * @type {PIXI.spine.Spine}
+         * @memberof Spine
+         */
         private _spineObject: PIXI.spine.Spine;
+        //#endregion
 
-        // - Current state:
-        private _curPlayingAnims: {};
-        private _curLooping: boolean;
-
-        //================================================================================
-        // Get/Set:
-        //================================================================================
-
+        //#region Get/Sets.
         /**
          * Return the spine object for this instance of core.Spine.
          * @readonly
@@ -72,11 +75,9 @@ namespace com.sideplay.core {
         public get stateData(): PIXI.spine.core.AnimationStateData {
             return this._spineObject.stateData;
         }
+        //#endregion
 
-        //================================================================================
-        // Constructor:
-        //================================================================================
-
+        //#region Constructor.
         /**
          *Creates an instance of Spine.
          * @param {string} id
@@ -88,14 +89,15 @@ namespace com.sideplay.core {
             // Generate the PIXI.Container storing this spine anim.
             super();
 
-            // Sets the spines ID, this corresponds to loadedAssets spine ID.
-            this._coreSpineID = id;
-
             // Generate the spine object herE:
-            this._spineObject = this._generateSpineObj();
+            this._spineObject = new PIXI.spine.Spine(core.Utils.spineAtlasGenerator.getSpineDataOfID(id));
 
             // Make sure this spineObject is tied to our gameloop:
             this._spineObject.autoUpdate = false;
+
+            // Add listeners to the spineobject!
+            this._listenerFunctions = {};
+            this._addSpineListeners();
 
             // Updates the spine obj
             this._updateFunction = dT => {
@@ -106,25 +108,46 @@ namespace com.sideplay.core {
             // Attach spineObject to this container.
             this.addChild(this._spineObject);
         }
+        //#endregion
 
-        //================================================================================
-        // Public Functions:
-        //================================================================================
+        //#region Public functions
+        /**
+         * Set onAnimationComplete function!
+         * @param {string} animName
+         * @param {()=>any} onCompleteFunc
+         * @param {boolean} once
+         * @memberof Spine
+         */
+        public onAnimationComplete(animName: string, onCompleteFunc: () => any, once: boolean = false) {
+            // Create array if it exists.
+            if (this._listenerFunctions[animName] == null) {
+                this._listenerFunctions[animName] = [];
+            }
+
+            // Create function with once self removal line:
+            const pushedFunction = () => {
+                if (once) {
+                    (this._listenerFunctions[animName] as Array<any>).splice(this._listenerFunctions[animName].indexOf(pushedFunction), 1);
+                }
+                onCompleteFunc();
+            };
+
+            // Push function:
+            this._listenerFunctions[animName].push(pushedFunction);
+        }
+
         /**
          * Super also removes the updateFunc.
-         * @override
          * @memberof Spine
          */
         public destroy(): void {
             core.game.removeUpdateFunction(this._updateFunction);
-            this._spineObject.destroy();
+            //this._spineObject.destroy();
             super.destroy();
         }
+        //#endregion
 
-        //================================================================================
-        // Private Functions:
-        //================================================================================
-
+        //#region Private functions
         /**
          * Called every frame, this makes sure our spine object is tied into the core game loop.
          * @private
@@ -136,51 +159,23 @@ namespace com.sideplay.core {
         }
 
         /**
-         * Function called on spine generation, this will attach all neccasery assets to the spine object, and generate the spine.
+         * Attaches spine listeners onto this spineObject.
          * @private
-         * @returns {PIXI.spine.Spine}
          * @memberof Spine
          */
-        private _generateSpineObj(): PIXI.spine.Spine {
-            // Grabs the spineData and spineAtlas files from the loaded resources:
-            this._spineData = JSON.parse(PIXI.loader.resources[this._coreSpineID].data);
-            this._spineAtlas = PIXI.loader.resources[this._coreSpineID + "Atlas"].data;
-
-            // These store our textures for the spine atlas:
-            let spineAtlas = new PIXI.spine.core.TextureAtlas();
-            let allTex = {};
-
-            // This code scours the spineData file we have loaded to grab all required textures from our textureCache:
-            // It stores these textures in "allTex" object with the correct names, and is the passed into spineAtlas
-            // to assign our spine object with all of the needed textures:
-
-            // Split our atlas file into newlines.
-            let testObj: string[] = this._spineAtlas.split("\n");
-            // Loop over each line
-            testObj.forEach(item => {
-                // Regex out any special characters
-                item = item.replace(/[^a-zA-Z0-9_-]/g, "");
-                // Check if this item exists in textureCache..
-                if (Object.keys(PIXI.utils.TextureCache).indexOf(item) > -1) {
-                    // Make sure this texture doesn't already exist before adding it:
-                    if (allTex[item] == null) {
-                        // Attach our texture to allTex object, using correct name:
-                        let tex = PIXI.Texture.fromFrame(item);
-                        allTex[item] = tex;
+        private _addSpineListeners(): void {
+            // Listeners:
+            this._spineObject.state.addListener({
+                // Event called when animations are completed:
+                complete: event => {
+                    if (this._listenerFunctions[event.animation.name] != null) {
+                        for (let i = 0; i < this._listenerFunctions[event.animation.name].length; i++) {
+                            this._listenerFunctions[event.animation.name][i]();
+                        }
                     }
                 }
             });
-
-            // Attach these textures to our spineAtlas created earlier:
-            spineAtlas.addTextureHash(allTex, true);
-
-            // Generate our spineData using the spineAtlas.
-            let ap = new PIXI.spine.core.AtlasAttachmentLoader(spineAtlas);
-            let sjp = new PIXI.spine.core.SkeletonJson(ap);
-            let sd = sjp.readSkeletonData(this._spineData);
-
-            // Return a new spine object using the generated spineData:
-            return new PIXI.spine.Spine(sd);
         }
+        //#endregion
     }
 }

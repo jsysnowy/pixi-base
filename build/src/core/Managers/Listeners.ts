@@ -13,40 +13,169 @@
 
 namespace com.sideplay.core {
     export class Listeners {
-        //================================================================================
-        // Singleton/Statics:
-        //================================================================================
-        // - Static singleton instance
+        //#region Singletons
         public static instance: Listeners;
+        //#endregion
 
-        // - Accessible names of all states.
+        //#region Accessible names of all states
+        /**
+         * Listener which triggers whenever the visibility state on the game changes.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static visibilityChange: string = "visibilityChange";
+
+        /**
+         * Listener which triggers whenever the visibility on the game is lost.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static visibilityLost: string = "visibilityLost";
+
+        /**
+         * Listener which triggers whenever the visibility on the game is gained.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static visibilityGained: string = "visibilityGained";
+
+        /**
+         * Listener which triggers whenever the games focus is changed.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static focusChange: string = "focusChange";
+
+        /**
+         * Listener which triggers when the focus on the game is lost.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static focusLost: string = "focusLost";
+
+        /**
+         * Listener which triggers when the focus on the game is gained.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static focusGained: string = "focusGained";
+
+        /**
+         * Listener which triggers when the game is resized.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static resize: string = "resize";
+
+        /**
+         * Listener which triggers when the games orientation is changed.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static orientationChange: string = "orientationChange";
+
+        /**
+         * Listener which triggers when the games orientation is changed to an invalid orientation.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static orientationInvalid: string = "orientationInvalid";
+
+        /**
+         * Listener which triggers when the games orientation is changed to a valid orientation.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static orientationValid: string = "orientationValid";
+
+        /**
+         * Listener which triggers on any interaction with the game.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static interaction: string = "interaction";
+
+        /**
+         * Listener which triggers when the user tries to scroll the game.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static scroll: string = "scroll";
+
+        /**
+         * Listener which calls when the user moves their touch.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static touchMove: string = "touchMove";
+
+        /**
+         * Listener which calls when the user stops touching.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
         public static touchEnd: string = "touchEnd";
 
-        //================================================================================
-        // Customisable Class Parameters:
-        //================================================================================
+        /**
+         * Listener which calls when mouse exits the games canvas.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
+        public static mouseLeaveCanvas: string = "canvasLeave";
 
-        //================================================================================
-        // Non-Customisable Class Params:
-        //================================================================================
+        /**
+         * Listener which calls when mouse enters the games canvas.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
+        public static mouseEnterCanvas: string = "canvasEnter";
+
+        /**
+         * Listener which calls when user holds down a mouse button.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
+        public static pointerDown: string = "pointerDown";
+
+        /**
+         * Listener which calls when used releases a held mouse button.
+         * @static
+         * @type {string}
+         * @memberof Listeners
+         */
+        public static pointerUp: string = "pointerUp";
+        //#endregion
+
+        //#region Class properties:
         private _initialised: boolean = false;
         private _functionsLib: { type: string; func: any; params: any[] }[];
+        private _isCorrectOrientation: boolean;
         private _isVisible: boolean;
         private _isFocused: boolean;
-        private _isCorrectOrientation: boolean;
+
+        // - Current states to make sure triggers don't fire multiple times.
+        private _interaction: boolean;
+        private _numCursors: number;
+        private _focused: boolean;
+        private _visible: boolean;
+        //#endregion
 
         // Variable listeners:
 
@@ -222,6 +351,12 @@ namespace com.sideplay.core {
         public init(): void {
             this._initialiseListeners();
         }
+
+        /**
+         * Called every frame, this checks listeners states incase it needs to fire any.
+         * @memberof Listeners
+         */
+        public update(): void {}
 
         //================================================================================
         // Private Functions:

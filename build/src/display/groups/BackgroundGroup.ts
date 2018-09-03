@@ -22,8 +22,8 @@ namespace com.sideplay.display {
 
             this.subscribeEvents();
 
-            core.game.add(this);
             this.displayScaleMode = core.DisplayScaleMode.FILL;
+
             this.create();
         }
 

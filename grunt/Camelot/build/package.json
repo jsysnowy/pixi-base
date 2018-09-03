@@ -1,0 +1,24 @@
+{
+  "name": "miwg2gtp",
+  "version": "1.0.0",
+  "description": "install dependencies for MIWG2GTP",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-concat-include": "^0.2.4",
+    "grunt-contrib-compress": "^0.13.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-text-replace": "^0.4.0",
+    "jshint-html-reporter": "^0.2.4",
+    "logfile-grunt": "^0.2.0"
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://macshemp@bitbucket.org/macshemp/miwg_seed_project.git"
+},
+  "author": "Matt Hutchinson",
+  "license": "ISC"
+}

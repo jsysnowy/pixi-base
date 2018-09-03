@@ -1,0 +1,202 @@
+@font-face {
+    font-family:"Lato-Hairline";
+    src:url("../fonts/Lato-Hairline.woff") format("woff");
+}
+@font-face {
+    font-family:"DINAlternateBold";
+    src:url("../fonts/DINAlternateBold.woff") format("woff");
+}
+@font-face {
+    font-family:"ArialBlack";
+    src:url("../fonts/ArialBlack.woff") format("woff");
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: auto;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+canvas {
+    margin: 0 auto;
+    display: block;
+}
+
+#gameArea {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    text-align:center;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-bottom: 1px;
+}
+
+#fullScreenMask {
+    height: 200%;
+    position: absolute;
+    overflow: hidden;
+
+    opacity: 0.8;
+    background-color: black;
+    top: 0;
+    left: 0;
+    /* width: 1px; */
+    z-index: 100;
+    width: 100%;
+    /* visibility: hidden; */
+    /* opacity: 0; */
+}
+
+#fullScreenMask p {
+    font-family: Helvetica, sans-serif;
+    color: black;
+    background-color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    overflow-y: auto;
+    position: relative;
+    top: 20%;
+    text-align: center;
+    padding: 15px;
+}
+
+#fullScreenMask.fs_off {
+    width: 1px;
+    opacity: 0;
+    height: 120%;
+}
+
+#fullScreenMask.fs_on {
+    width: 100%;
+    opacity: 0.7;
+    height: 200%;
+}
+
+#rotateDevice {
+    background: #ff7900 url(../img/orientation_background_fr.png) no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+    background-position: center center;
+    z-index: 100;
+}
+#rotateDevice.fr_FR {
+    background: #ff7900 url(../img/orientation_background_fr.png) no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+    background-position: center center;
+}
+#rotateDevice.de_DE {
+    background: #ff7900 url(../img/orientation_background_de.png) no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+    background-position: center center;
+}
+
+#rotateDevice.hide {
+    display: none;
+}
+#rotateDevice.show {
+    display: block;
+}
+
+#gameArea.show { 
+    z-index: 1;
+}
+#gameArea.hide {
+    z-index: -1;
+}
+
+body #pauseOverlay {
+    display: none;
+    opacity: 0;
+    height: 2048px;
+    width: 2048px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50%;
+    margin-top: -50%;
+    background-color: rgba(0,0,0,0.80);
+}
+
+body #pauseOverlay.show {
+    
+    transition: opacity 5s ease-in-out;
+    -moz-transition: opacity 5s ease-in-out;
+    -webkit-transition: opacity 5s ease-in-out;
+    opacity: 1;
+
+}
+
+body > img {
+   
+   position: fixed;
+   
+}
+
+#pauseIcon {
+    position: fixed;
+    z-index: 10000;
+    
+    width: 33%;
+    height: 9.703%;
+}
+
+#pauseClickable {
+    background-size:     contain;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */
+    display:block;
+    height:100%;
+    overflow:hidden;
+    text-indent:100%;
+    white-space:nowrap;
+    width:100%;
+}
+
+.fr {
+    background-image:url('../pause/fr_ResumeButton.png');
+}
+
+.fr_FR {
+    background-image:url('../pause/fr_ResumeButton.png');
+}
+
+.de {
+    background-image:url('../pause/de_ResumeButton.png');
+}
+
+.de_DE {
+    background-image:url('../pause/de_ResumeButton.png');
+}
+
+@keyframes prompt {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+@keyframes click {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.9);
+  }
+}

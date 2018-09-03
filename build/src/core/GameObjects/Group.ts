@@ -131,7 +131,7 @@ namespace com.sideplay.core {
          * @memberof Group
          */
         private hookGroupToScale() {
-            core.Scale.instance.addGroup(this);
+            core.ScaleManager.instance.addGroup(this);
         }
 
         /**
@@ -140,7 +140,7 @@ namespace com.sideplay.core {
          * @memberof Group
          */
         private unhookGroupFromScale() {
-            core.Scale.instance.removeGroup(this);
+            core.ScaleManager.instance.removeGroup(this);
         }
     }
 }

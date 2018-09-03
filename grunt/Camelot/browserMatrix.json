@@ -1,0 +1,11 @@
+{
+    "iOS": ["safari", "chrome"],
+    "Android": ["chrome"],
+    "BlackBerry": ["safari"],
+    "Windows Phone": ["iemobile"],
+    "audioDisable": [
+        {
+            "Windows Phone": ["iemobile"]
+        }
+    ]
+}

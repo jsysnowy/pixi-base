@@ -1,0 +1,112 @@
+body {
+    overflow: hidden;
+}
+#scaleDiv {
+    position: absolute;
+}
+
+/** Fix IOS grey selection issue **/
+canvas {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+}
+
+#scaleDiv > canvas {
+    position: absolute
+}
+
+#bgDiv {
+    position: absolute;
+}
+#bgDiv > canvas {
+    position: absolute
+}
+
+#IWGholder {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border: none;
+    outline: none;
+}
+
+#IWGholder > canvas {
+    position: absolute !important;
+    height: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    margin: 0 auto;
+    outline: none !important;
+}
+
+body #pauseOverlay {
+    display: none;
+    opacity: 0;
+    height: 2048px;
+    width: 2048px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50%;
+    margin-top: -50%;
+    background-color: rgba(0,0,0,0.3);
+}
+
+body #pauseOverlay.show {
+    
+    transition: opacity 5s ease-in-out;
+    -moz-transition: opacity 5s ease-in-out;
+    -webkit-transition: opacity 5s ease-in-out;
+    opacity: 1;
+
+}
+
+body > img {
+   
+   position: fixed;
+   
+}
+
+#pauseIcon {
+    position: fixed;
+    z-index: 10000;
+}
+
+@keyframes prompt {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+@keyframes click {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.9);
+  }
+}
+
+@font-face {
+    font-family: 'effra';
+    src: url('imports/font/tnl_effra_he-webfont.eot');
+    src: url('imports/font/tnl_effra_he-webfont.eot?#iefix') format('embedded-opentype'),
+         url('imports/font/tnl_effra_he-webfont.woff2') format('woff2'),
+         url('imports/font/tnl_effra_he-webfont.woff') format('woff'),
+         url('imports/font/tnl_effra_he-webfont.ttf') format('truetype'),
+         url('imports/font/tnl_effra_he-webfont.svg#tnl_effraheavy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

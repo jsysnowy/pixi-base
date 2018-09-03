@@ -177,9 +177,10 @@ namespace com.sideplay.core {
          * @param value The value to format
          * @param ignoreDecimalsWherePossible Ignore decimal values if possible (eg £400 instead of £400.00)
          * @param singleUseMinor Force the string to be in the minor denomination (eg 50p instead of £0.50)
+         * @param shrinkToKorM If in English, automatically shrink the value to K or M (eg 700,000 becomes 700K, 1,000,000 becomes 1M, etc)
          * @return string The formatted number
          */
-        public formatCurrency(value: number, ignoreDecimalsWherePossible?: boolean, singleUseMinor?: boolean): string {
+        public formatCurrency(value: number, ignoreDecimalsWherePossible?: boolean, singleUseMinor?: boolean, shrinkToKorM?:boolean): string {
             let decimalPrecision: number = this._selectedCurrencyDetails.decimalPrecision;
 
             if (ignoreDecimalsWherePossible) {
@@ -188,8 +189,28 @@ namespace com.sideplay.core {
                 }
             }
 
+            //automatically shrink the value and add "K" or "M"
+            var shrinkAppendedCharacter:string = "";
+            if(shrinkToKorM && this._selectedLanguage == "en"){
+                if(this._checkIsInt(value) && singleUseMinor != true && !this._useMinorIfPresent){
+                    if(value >= 1000 && value < 1000000 && this._checkIsInt((value / 1000))){
+                        //if the value is greater than or equal to 1,000 and less than 1,000,000 shrink it and use "K"
+                        value = value / 1000;
+                        shrinkAppendedCharacter = "K";
+                        decimalPrecision = 0;
+                    } else if (value >= 1000000 && this._checkIsInt((value / 1000000))){
+                        //if the value is over 1,000,000 shrink it and use "M"
+                        value = value / 1000000;
+                        shrinkAppendedCharacter = "M";
+                        decimalPrecision = 0;
+                    }
+                }
+            }
+
             let returnString: string = "" + this._selectedCurrencyDetails.format; // String containing "%m"/"%n"/"%b". Always contains "%v".
-            const preppedValue: string = this._prepNumbers(value, decimalPrecision, 3, this._selectedCurrencyDetails.majorDelimiter, this._selectedCurrencyDetails.minorDelimiter);
+            var preppedValue: string = this._prepNumbers(value, decimalPrecision, 3, this._selectedCurrencyDetails.majorDelimiter, this._selectedCurrencyDetails.minorDelimiter);
+
+            preppedValue += shrinkAppendedCharacter;
 
             if (this._useISOCode) {
                 returnString = this._selectedCurrency;

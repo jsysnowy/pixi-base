@@ -24,10 +24,7 @@ namespace com.sideplay.display {
 
             this.subscribeEvents();
 
-            core.game.add(this);
             this.displayScaleMode = core.DisplayScaleMode.FIT;
-
-            console.log("finished!");
 
             this.create();
         }
@@ -39,7 +36,7 @@ namespace com.sideplay.display {
         public create(): void {
             let bg = new PIXI.Graphics();
             bg.beginFill(0xff0022, 0.5);
-            bg.drawRect(0, 0, core.Game.NATIVE_WIDTH, core.Game.NATIVE_HEIGHT);
+            bg.drawRect(0, 0, config.settings.nativeWidth, config.settings.nativeHeight);
             this.addChild(bg);
         }
     }

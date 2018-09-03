@@ -1,0 +1,26 @@
+{
+    "prize_tiers":[
+        {
+            "odds":{"number_of_tickets": 1},
+            "prizes": [{"cash":5000000}]
+        }
+    ],
+    "odds":{
+        "total_number_of_tickets":250000
+    },
+    "price": 500,
+    "depleting_pool": {
+        "enabled": true,
+        "max_active_batches": 2,
+        "auto_create_batch_threshold": 90,
+        "auto_create_batches": true,
+        "batch_dtl": 730,
+        "pool_id": "E9999_gamename_v1"
+    },    
+    "selection_required":false,
+    "details" : {
+        "game_id": "gamename",
+        "game_reference": "E9999",
+        "game_description": "Gamename"
+    }
+}

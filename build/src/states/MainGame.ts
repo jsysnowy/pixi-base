@@ -17,9 +17,11 @@ namespace com.sideplay.state {
             debug.fsm.setState(debug.States.gameLoaded);
 
             this._bgg = new display.BackgroundGroup();
-            this._mg = new display.MasterGroup();
             this.addChild(this._bgg);
+
+            this._mg = new display.MasterGroup();
             this.addChild(this._mg);
+
             core.pause.init();
             this.addChild(core.pause.group);
         }
